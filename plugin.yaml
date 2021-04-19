@@ -1,16 +1,10 @@
+---
 name: "ketch-demo"
-version: "0.1.0"
-usage: "get the last release name"
-description: "get the last release name"
+version: "0.4.0"
+usage: "monitor and rollback in case of failure based on metrics or logs"
+description: |-
+  Query at a given interval a Prometheus, Elasticsearch or Sentry instance. A
+  rollback of the release is initiated if the number of result is positive.
 ignoreFlags: false
-command: "$HELM_BIN --host $TILLER_HOST list --short --max 1 --date -r"
-platformCommand:
-  - os: linux
-    arch: i386
-    command: "$HELM_BIN list --short --max 1 --date -r"
-  - os: linux
-    arch: amd64
-    command: "$HELM_BIN list --short --max 1 --date -r"
-  - os: windows
-    arch: amd64
-    command: "$HELM_BIN list --short --max 1 --date -r"
+useTunnel: true
+command: "https://github.com/saiyam1814/ketch-demo"
