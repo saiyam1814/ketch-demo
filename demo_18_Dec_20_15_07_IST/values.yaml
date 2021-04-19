@@ -1,0 +1,48 @@
+app:
+  deployments:
+  - extra: {}
+    image: docker.io/saiyam911/ketch-demo
+    labels: null
+    processes:
+    - cmd:
+      - /bin/sh
+      - -lc
+      - exec $0 "$@"
+      - /entrypoint.sh
+      - python
+      - name.py
+      containerPorts:
+      - containerPort: 80
+      env:
+      - name: port
+        value: "80"
+      - name: PORT
+        value: "80"
+      - name: PORT_web
+        value: "80"
+      extra: {}
+      name: web
+      publicServicePort: 80
+      routable: true
+      servicePorts:
+      - name: demo-web
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      units: 1
+    routingSettings:
+      weight: 100
+    version: 1
+  env: null
+  ingress:
+    http:
+    - ketch.fb54c6ea-e9a5-4bda-8a05-e68115ac21d0.k8s.civo.com
+    - demo.185.136.233.178.shipa.cloud
+    https: null
+  isAccessible: true
+  name: demo
+dockerRegistry:
+  imagePullSecret: ""
+ingressController:
+  serviceEndpoint: 185.136.233.178
+  type: traefik
